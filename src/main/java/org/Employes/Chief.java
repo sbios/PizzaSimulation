@@ -4,6 +4,7 @@ import org.OrdersLists.CookOrdersList;
 import org.MessageHandler.MessageHandler;
 import org.Orders.Order;
 import org.OrdersLists.DeliveryOrdersList;
+import org.PizzeriaStatistics.PizzeriaStatistics;
 import org.TimeStamp.TimeStamp;
 
 import java.util.concurrent.TimeUnit;
@@ -29,6 +30,7 @@ public class Chief extends Employee implements Runnable{
                 System.out.println(MessageHandler.takeOrderMessage(this,order));
                 TimeUnit.SECONDS.sleep(order.getCookingTime());
                 System.out.println(MessageHandler.finishOrderMessage(this,order));
+                PizzeriaStatistics.addCookedOrder(order);
                 DeliveryOrdersList.DeliveryOrders.put(order);
 
             } catch (InterruptedException e) {

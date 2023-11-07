@@ -3,6 +3,7 @@ package org.Employes;
 import org.MessageHandler.MessageHandler;
 import org.Orders.Order;
 import org.OrdersLists.DeliveryOrdersList;
+import org.PizzeriaStatistics.PizzeriaStatistics;
 
 import java.util.concurrent.TimeUnit;
 
@@ -28,6 +29,7 @@ public class DeliveryPerson extends Employee implements Runnable {
                 System.out.println(MessageHandler.takeOrderMessage(this,order));
                 TimeUnit.SECONDS.sleep(order.getDeliveryDistance());
                 System.out.println(MessageHandler.finishOrderMessage(this,order));
+                PizzeriaStatistics.addDeliveredOrder(order);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
